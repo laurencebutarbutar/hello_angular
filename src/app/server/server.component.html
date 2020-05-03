@@ -1,0 +1,93 @@
+<h2>
+  I'm The Server Component
+</h2>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline">
+    String Interpolation test :</p>
+  <p>{{ 'Server' }} Id = {{ serverId }}, server status = {{ serverStatus }}, getServerStatus = {{ getServerStatus() }}</p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline">Property Binding : </p>
+  <button class = "btn btn-primary" [disabled]="!allowedButton" (click)="onServerCreation()">Add Server</button>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> String Interpolation : </p>
+  <p> Allowed Button = {{ allowedButton }} </p>
+  <p style="font-weight: bold; text-decoration: underline"> Property Binding  : </p>
+  <p> Allowed Button = <span [innerText] = "allowedButton"></span></p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Event Binding : </p>
+  <p> Server Status : <span> {{ serverCreationStatus }}</span></p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Passing and Using Data with Event Binding :</p>
+  <label> Server Name : </label>
+  <input type="text" class="form-control" (input)="onUpdateServerCreation($event)">
+  <p>{{ updateServerCreation }}</p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Two Way Data Binding :</p>
+  <label> Server Name : </label>
+  <input type="text" class="form-control" [(ngModel)]="updateServerCreation">
+  <p>{{ updateServerCreation }}</p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Combining All Form of Data Binding :</p>
+  <label> Input Server Name : </label>
+  <input type="text" class="form-control" [(ngModel)]="inputServerName">
+  <button class="btn btn-danger" [disabled]="!allowedButton" (click)="onCombiningServerCreationAndStatus()"> Submit Combine </button>
+  <p>Combine Server Creation :</p>
+  <p> Server Creation Status = {{ combiningServerCreationStatus }} </p>
+  <p> Server Name = {{ combiningServerName }}</p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Structural Directives using *ngIf :</p>
+  <label> Input Server Name : </label>
+  <input type="text" class="form-control" [(ngModel)]="inputServerName">
+  <button class="btn btn-danger" [disabled]="!allowedButton" (click)="onCombiningServerCreationAndStatus()"> Submit Combine </button>
+  <p>Directive Server Creation :</p>
+  <p *ngIf="directivesNgIf"> Server Creation Status = {{ combiningServerCreationStatus }} </p>
+  <p *ngIf="directivesNgIf"> Server Name = {{ combiningServerName }}</p>
+</div>
+<hr>
+
+<div>
+  <p style="font-weight: bold; text-decoration: underline"> Structural Directives using *ngIf and else :</p>
+  <label> Input Server Name : </label>
+  <input type="text" class="form-control" [(ngModel)]="inputServerName">
+  <button class="btn btn-danger" [disabled]="!allowedButton" (click)="onCombiningServerCreationAndStatus()"> Submit Combine </button>
+  <div *ngIf="directivesNgIf; else noServer" style="font-weight: bolder">
+    <p> Directive If Condition Server Creation :</p>
+    <p> Server Creation Status = {{ combiningServerCreationStatus }}
+    <p> Server Name = {{ combiningServerName }}</p>
+  </div>
+  <ng-template #noServer>
+    <div style="font-weight: bold">
+      <p> Directive Else Condition Server Creation :</p>
+      <p> Server Creation Status = {{ combiningServerCreationStatus }} </p>
+      <p> Server Name = {{ combiningServerName }} </p>
+    </div>
+  </ng-template>
+</div>
+<hr>
+
+<app-connection></app-connection>
+<app-connection></app-connection>
+<hr>
+
